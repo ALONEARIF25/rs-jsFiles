@@ -161,3 +161,8 @@
 .more-info {
   max-width: 65ch;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
