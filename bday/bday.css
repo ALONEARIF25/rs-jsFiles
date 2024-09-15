@@ -7,7 +7,7 @@ body {
 }
 
 body {
-  background-color: rgb(5, 5, 5);
+  background-color: rgb(7, 7, 7);
   color: rgb(236, 236, 236);
   font-family: "Poppins", sans-serif;
   padding-left: 15px;
@@ -84,7 +84,10 @@ h1 {
   font-weight: 400;
   font-size: 13px;
   color: rgb(141, 141, 141);
-  max-width: 150px;
+  max-width: 135px; /* Limit the width to 150px */
+  white-space: nowrap; /* Prevent the text from wrapping to the next line */
+  overflow: hidden; /* Hide any text that exceeds the container */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflowed text */
 }
 
 .userimage {
