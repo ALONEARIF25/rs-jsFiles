@@ -143,6 +143,7 @@ footer {
   align-items: center;
   margin-top: 20px;
   margin-left: 10px;
+  transition: 0.5s ease;
 }
 
 .not-found {
@@ -151,23 +152,12 @@ footer {
   font-size: smaller;
 }
 
-@media only screen and (min-width: 736px) {
-  h1 {
-    text-align: center;
-  }
-  h3 {
-    text-align: center;
-  }
-  .menu-label {
-    display: none;
-  }
-}
-
+/* Default styles */
 .sidebar {
   position: fixed;
   top: 20px;
   bottom: 0;
-  width: 170px;
+  width: 145px; /* Default width for smaller screens */
   height: 100%;
   background-color: rgb(28, 28, 28);
   color: rgb(226, 226, 226);
@@ -176,6 +166,25 @@ footer {
   transition: left 0.5s ease-in-out;
   left: -250px; /* Hidden by default */
   border-top-right-radius: 30px;
+}
+
+/* Media query for screens 736px and wider */
+@media only screen and (min-width: 736px) {
+  .sidebar {
+    width: 200px; /* Width for larger screens */
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .menu-label {
+    display: none;
+  }
 }
 
 .sidebar ul {
@@ -231,10 +240,6 @@ body.sidebar-active .sidebar {
   left: 0; /* Show sidebar */
 }
 
-body.sidebar-active main {
-  margin-left: 210px;
-}
-
 .nav-link {
   text-decoration: none;
   color: inherit; /* Inherit the color from the parent element */
@@ -242,7 +247,11 @@ body.sidebar-active main {
 
 body.sidebar-active main,
 body.sidebar-active footer {
-  margin-left: 210px;
+  margin-left: 185px;
   filter: grayscale(1);
   opacity: 0.8;
+}
+
+body.sidebar-active .navbar {
+  opacity: 0;
 }
