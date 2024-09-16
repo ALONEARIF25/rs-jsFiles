@@ -42,6 +42,7 @@ h3 {
   margin-top: -25px;
   color: rgb(141, 141, 141);
   line-height: 14px;
+  transition: opacity 0.5s ease;
 }
 
 .container01 {
@@ -242,6 +243,6 @@ body.sidebar-active main {
 body.sidebar-active main,
 body.sidebar-active footer {
   margin-left: 210px;
-  filter: blur(15px);
-  opacity: 0.7;
+  filter: grayscale(1);
+  opacity: 0.8;
 }
