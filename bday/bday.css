@@ -131,6 +131,7 @@ footer p {
 
 footer {
   margin-top: auto;
+  transition: 0.5s ease;
 }
 .scroll-container.active {
   cursor: grabbing;
@@ -236,4 +237,11 @@ body.sidebar-active main {
 .nav-link {
   text-decoration: none;
   color: inherit; /* Inherit the color from the parent element */
+}
+
+body.sidebar-active main,
+body.sidebar-active footer {
+  margin-left: 210px;
+  filter: blur(15px);
+  opacity: 0.7;
 }
