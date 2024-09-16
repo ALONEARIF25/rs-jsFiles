@@ -16,7 +16,11 @@ const generateImageCon = (member, daysDiff) => {
   const imgSrc = member.image ? `../${member.image}` : "../images/user.jpg";
   const memberName = member.name;
   const timeLabel =
-    daysDiff > 0 ? `${daysDiff} days left` : `${Math.abs(daysDiff)} days ago`;
+    daysDiff === 0
+      ? "Today"
+      : daysDiff > 0
+      ? `${daysDiff} days left`
+      : `${Math.abs(daysDiff)} days ago`;
 
   // Create HTML for member
   return `
@@ -29,9 +33,19 @@ const generateImageCon = (member, daysDiff) => {
         </div>`;
 };
 
-// Get upcoming birthdays within 30 days
-const getUpcomingBirthdays = () => {
+// Get birthdays happening today
+const getTodayBirthdays = () => {
   const today = new Date();
+  return teamMembers.filter((member) => {
+    const dob = new Date(member.dob);
+    return (
+      dob.getDate() === today.getDate() && dob.getMonth() === today.getMonth()
+    );
+  });
+};
+
+// Get upcoming birthdays within the next 30 days
+const getUpcomingBirthdays = () => {
   return teamMembers
     .map((member) => {
       const dob = new Date(member.dob);
@@ -44,7 +58,6 @@ const getUpcomingBirthdays = () => {
 
 // Get recent birthdays within the past 30 days
 const getRecentBirthdays = () => {
-  const today = new Date();
   return teamMembers
     .map((member) => {
       const dob = new Date(member.dob);
@@ -55,26 +68,35 @@ const getRecentBirthdays = () => {
     .sort((a, b) => Math.abs(a.daysDiff) - Math.abs(b.daysDiff));
 };
 
-// Render the birthday containers
-const renderBirthdays = () => {
-  const upcomingMembers = getUpcomingBirthdays();
-  const recentMembers = getRecentBirthdays();
+// Render birthdays for a specific container
+const renderBirthdays = (container, members, notFoundMessage) => {
+  if (members.length === 0) {
+    container.innerHTML = `<p class="not-found">${notFoundMessage}</p>`;
+  } else {
+    container.innerHTML = members
+      .map((member) => generateImageCon(member, member.daysDiff || 0))
+      .join("");
+  }
+};
 
+// Render the birthday containers
+const renderAllBirthdays = () => {
+  const todayContainer = document.querySelector(".today-container");
   const upcomingContainer = document.querySelector(".upcoming-container");
   const recentContainer = document.querySelector(".recent-container");
 
-  // Generate and insert HTML for upcoming and recent members
-  upcomingContainer.innerHTML = upcomingMembers
-    .map((member) => generateImageCon(member, member.daysDiff))
-    .join("");
+  const todayMembers = getTodayBirthdays();
+  const upcomingMembers = getUpcomingBirthdays();
+  const recentMembers = getRecentBirthdays();
 
-  recentContainer.innerHTML = recentMembers
-    .map((member) => generateImageCon(member, member.daysDiff))
-    .join("");
+  // Render today, upcoming, and recent birthdays
+  renderBirthdays(todayContainer, todayMembers, "No birthdays today");
+  renderBirthdays(upcomingContainer, upcomingMembers, "No upcoming birthdays");
+  renderBirthdays(recentContainer, recentMembers, "No recent birthdays");
 };
 
 // Initialize rendering when the page loads
-document.addEventListener("DOMContentLoaded", renderBirthdays);
+document.addEventListener("DOMContentLoaded", renderAllBirthdays);
 
 document.addEventListener("DOMContentLoaded", () => {
   const scrollContainers = document.querySelectorAll(".scroll-container");
@@ -112,4 +134,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // Prevent default image dragging
     container.addEventListener("dragstart", (e) => e.preventDefault());
   });
+});
+
+const menuIcon = document.querySelector(".menu-icon");
+const body = document.body;
+const sidebar = document.querySelector(".sidebar");
+
+// Toggle sidebar visibility on menu icon click
+menuIcon.addEventListener("click", () => {
+  body.classList.toggle("sidebar-active");
+});
+
+// Close the sidebar when clicking outside
+window.addEventListener("click", (e) => {
+  if (!sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
+    body.classList.remove("sidebar-active");
+  }
 });
