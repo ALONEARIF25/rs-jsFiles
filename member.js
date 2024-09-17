@@ -68,7 +68,7 @@ const teamMembers = [
       "motto": "Born to <b>Build</b>",
       "socials": "https://www.facebook.com/alonearif25 https://instagram.com/alonearif25 https://linktr.ee/alonearif https://youtube.com/alonearif https://discord.com/users/alonearif https://twitter.com/alonearif25 https://www.snapchat.com/add/alonearif",
       "memories": "Singing Amar Sonar Bangla in the classroom as punishment by Soriful sir and embarrassing my self in front of everyone. Playing the number game with strangers in Discord during covid lockdown. Playing Pokemon Ash Grey beta with Mishu in 3rd grade. Spending the day with my homies (mishu,apon,sohail) in 2019 on SubarnaJayanti festival in school, I remember I was in 5th grade and everyone was so curing about p***, so i showed some to my homies, as they didn'y have any to watch lmao. Spending night with Zisan, going his sis birthday. Going to random olympiads in 8th grade and meeting so many new people, I spend really good times with some of them, but lost them all over time due to situation. Being recognized by girls in the public whom I didn't know, and they would ask random questions. Science Fest in RC in 2023. And so much more!",
-      "funfacts": "I'm lazy and I don't wanna be lazy, but at the end of the day, I can't help being lazy. I'm a humble guy, you can ask me help for almost anything.",
+      "funfacts": "I was 11th roll for 3 continuous year in my school, from 8th grade to 10th grade; I'm lazy and I don't wanna be lazy, but at the end of the day, I can't help being lazy; I'm a humble guy, you can ask me help for almost anything.",
       "bsfs": "Arijit Paul, Sohail Ahmed, Tirtha Dev B, Chinmoy Gupta",
       "ttbsfs": "Amanoth Zakaria, Araf",
       "image": "images/pfp/arifpfp.jpg",
