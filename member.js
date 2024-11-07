@@ -625,7 +625,7 @@ const teamMembers = [
       "sub": "",
       "ID": "RGLH33A SSC 25",
       "hobbies": "Coding, Napping, Outdoor Games",
-      "Goals": "",
+      "Goals": "Engineer",
       "ambition": "Buying an AI PC",
       "schlplan": "Debate tournament ",
       "phone": "01879123505",
@@ -2281,7 +2281,7 @@ const teamMembers = [
   "gamer": true,
   "willDonate": "maybe",
   "rating": "satisfied",
-  "image": "jahin2.jpg"
+  "image": "images/pfp/jahin2.jpg"
 },
   {
   "email": "aliabraradib2091@gmail.com",
