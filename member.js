@@ -1,5 +1,5 @@
 const verifiedSVG = `
-<img style="height: 16px; width: 16px;   margin-top: -2px; filter: brightness(1) saturate(0);" src="veri.png"> 
+<img style="height: 16px; width: 16px;   margin-top: -2px;" src="veri.png"> 
 `
 
 
