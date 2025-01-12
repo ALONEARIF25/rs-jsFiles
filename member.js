@@ -2449,7 +2449,7 @@ const teamMembers = [
 },
   {
   "email": "stanjila008@gmail.com",
-  "name": "Biva",
+  "name": "Moumita Islam Biva",
   "sub": "",
   "ID": "RGGHS39CSSC25",
   "hobbies": "Reading, Napping, Travelling, Music",
