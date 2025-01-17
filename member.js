@@ -2531,7 +2531,7 @@ const teamMembers = [
 },
   {
   "email": "lfcnsaad@gmail.com",
-  "name": "Abdullah Saad Aka Harry Potter",
+  "name": "Abdullah Saad",
   "sub": "",
   "ID": "RGLHS50A SSC25",
   "hobbies": "Reading, Writing, Editing Photo or Video, Napping, Working Out, Travelling, Music, Arts, Video Games",
