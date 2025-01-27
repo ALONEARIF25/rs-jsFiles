@@ -143,7 +143,7 @@ const teamMembers = [
       "ambition": "Buying a Bugatti and parking it near my school",
       "schlplan": "lafalafi w homies on stage",
       "phone": "+8801533813270",
-      "rajplan": "Building a flat <span style=\"filter: blur(5px);\">blurred text</span>",
+      "rajplan": "Building a flat",
       "motto": "When you wake up, you wake the fuck up",
       "socials": "https://facebook.com/oremmy.ari https://instagram.com/ari0.png",
       "memories": "Hanging out w the homies and 50th anniversary of lab",
