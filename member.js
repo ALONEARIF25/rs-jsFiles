@@ -3307,7 +3307,7 @@ const teamMembers = [
   "gamer": true,
   "willDonate": "maybe",
   "rating": "satisfied",
-  "image": ""
+  "image": "images/pfp/ifti1.jpg"
 },
   {
   "email": "bangladeshi_peripleneta@gmail.com",
