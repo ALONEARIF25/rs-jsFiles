@@ -258,6 +258,48 @@ const teamMembers = [
   "rating": "satisfied",
   "image": "images/pfp/Homaira_Tabassum_Sondhi_RGGHSH49C_SSC2025.jpg"
 },
+  {
+  "email": "anayabkcd07@gmail.com",
+  "name": "Anaya Sarker Jini",
+  "sub": "",
+  "ID": "SNHGHS00A SSC2025",
+  "hobbies": "Writing, Music, Arts, Video Games, Outdoor Games",
+  "Goals": "Engineer",
+  "ambition": "Buying a Husky",
+  "schlplan": "N/A",
+  "phone": "<span style='filter: blur(2px);'>01303734616</span>"
+  "rajplan": "নগরভবনের সামনের বেঞ্চ এ ঘুমাইতে চাই🎀",
+  "motto": "I made a promise, I'll never run and hide",
+  "socials": "https://www.instagram.com/_jeeniex_?igsh=MWhpN3p4YTkweXhqbQ==",
+  "memories": "Last day:3",
+  "funfacts": "হেব্বি immature",
+  "achi": "Mella fr, a good singer, dancer, choreographer, debater, rapper, abar sundor drawing partam, football halka patla, shob kichu te bhore bhore prizes chilo class 1-5 porjonto🎀",
+  "extra": "",
+  "favteacher": "Amal Sir",
+  "bsfs": "N/A",
+  "ttbsfs": "N/A",
+  "dob": "2008-02-07",
+  "joined": "30th Jan, 2025 12:24 AM",
+  "dsalary": "more than $5,000",
+  "link": "",
+  "bg": "",
+  "border_color": "#fff",
+  "border_shadow": "",
+  "vanity": "",
+  "donor": false,
+  "verified": false,
+  "pro": false,
+  "racist": false,
+  "memer": false,
+  "topper": false,
+  "buff": false,
+  "artist": false,
+  "gamer": true,
+     "sheild": true,
+  "willDonate": "yes",
+  "rating": "satisfied",
+  "image": "images/pfp/Anaya_Sarker_Jini_SNHGHS00A_SSC2025.jpg"
+},
 
     {
       "email": "akibalquraisi123@gmail.com",
@@ -3392,6 +3434,7 @@ const teamMembers = [
   "rating": "satisfied",
   "image": "images/pfp/Amana_Ahmed_Tinni_PN_10C_SSC25.jpg"
 },
+  
 
 
   ];
