@@ -267,7 +267,7 @@ const teamMembers = [
   "Goals": "Engineer",
   "ambition": "Buying a Husky",
   "schlplan": "N/A",
-  "phone": "<span style='filter: blur(3px); user-select: none; pointer-events: none;'>01303734616</span>",
+  "phone": "<span style='filter: blur(3px); user-select: none; pointer-events: none;'>01XXXXXXXXX</span>",
   "rajplan": "নগরভবনের সামনের বেঞ্চ এ ঘুমাইতে চাই🎀",
   "motto": "I made a promise, I'll never run and hide",
   "socials": "https://www.instagram.com/_jeeniex_?igsh=MWhpN3p4YTkweXhqbQ==",
