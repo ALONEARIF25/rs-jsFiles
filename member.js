@@ -2568,7 +2568,8 @@ const teamMembers = [
   "buff": false,
   "artist": false,
   "gamer": false,
-      "sheild": true,
+      "sheild": false,
+       "blur": true,
   "willDonate": "no",
   "rating": "satisfied",
   "image": "images/pfp/Ahmad_01718062020.jpg"
