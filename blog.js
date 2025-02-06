@@ -3,7 +3,7 @@ const blogposts = [
     title: "Way to 100",
     description: "We are so close to our first 100 members!",
     content:
-      "Thanks to every single of those who played a role in order to gather these amazing members! A big shoutout to <span style='color: var(--brightest);'>Arijit Paul</sapn>, without him, this woudn't be possible. Many thanks to our Developer and ReunionTeam. There will be some perks for these first 100 members, they might get a badge called OG CREW! Stay tuned and make your renuions fun!",
+      "Thanks to every single of those who played a role in order to gather these amazing members! A big shoutout to <b>Arijit Paul</b>, without him, this woudn't be possible. Many thanks to our Developer and ReunionTeam. There will be some perks for these first 100 members, they might get a badge called OG CREW! Stay tuned and make your renuions fun!",
     date: "06 Feb 2025",
     category: ["Announcements"],
     importance: 1,
