@@ -9,7 +9,7 @@ const blogposts = [
     importance: 1,
     image:
       "https://images2.alphacoders.com/855/thumb-1920-855531.png",
-    author: "teamreunion",
+    author: "alonearif",
     authorlink: "./",
   },
   {
@@ -22,7 +22,7 @@ const blogposts = [
     importance: 2,
     image:
       "https://i.ppy.sh/9b864944c40b034ac530654c97c9848db7eed380/68747470733a2f2f696d6775722d617263686976652e7070792e73682f646973636f72642f3934373835393938393531333531393133382d3935353134393235333932363333303431392d313030302e706e67",
-    author: "teamreunion",
+    author: "teamreunionai",
     authorlink: "./",
   },
 ];
