@@ -77,7 +77,7 @@ const teamMembers = [
       "border_shadow": "#27374D",
       "bg": "mybg3.gif",
       "vanity": "arif",
-      "favteacher": "Askan Ali, Nilufar Ali, Suvra Mam, Razzak Sir, Badrul Sir",
+      "favteacher": "Askan Ali, Nilufar Ali, Suvra Mam, Razzak Sir, Badrul Sir, Nasima Mam",
       "dob": "2008-05-10",
       "donor": false,
       "verified": true,
