@@ -963,7 +963,7 @@ const teamMembers = [
       "link": "",
       "border_color": "#fff",
       "donor": false,
-      "verified": true,
+      "verified": false,
       "pro": false,
       "racist": false,
       "memer": false,
