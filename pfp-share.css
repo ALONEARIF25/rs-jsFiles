@@ -8,10 +8,14 @@
   src: url("fonts/TerminaTest-Bold.otf");
 }
 
-
-
-.badgeico{
-  display: inline-block; vertical-align: middle; font-size: 10px; background-color: #4c389f; color: #fff; padding: 2px 4px; border-radius: 4px;
+.badgeico {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 10px;
+  background-color: #4c389f;
+  color: #fff;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
 
 .loadmore-butt {
@@ -36,13 +40,12 @@
   margin-top: 35px;
 }
 
-
 .member-box {
   position: relative;
   display: flex;
   align-items: center;
   margin: 13px;
-  background-color: #FFF;
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   width: 350px;
@@ -50,9 +53,6 @@
   transition: 0.2s ease; /* transform 0.5s ease, opacity 0.5s ease, z-index 0.5s ease, filter 0.5s ease, margin 0.5s ease; */
   z-index: 2;
   opacity: 1;
- 
-
-
 }
 
 /* Visible state with animation */
@@ -62,7 +62,7 @@
 }
 
 .member-box::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -78,7 +78,6 @@
 .member-box:hover::after {
   filter: blur(10px);
   transform: scale(1.05);
-  
 }
 
 .member-box:hover {
@@ -104,15 +103,17 @@
 }
 
 .member-box.expanded .profile img {
-  width: 325px;
-  height: 325px;
-  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
   transition: transform 0.2s;
   object-fit: cover;
   z-index: 2;
   margin-left: 5px;
   margin-bottom: -10px;
   transition: 0.2s;
+  margin-top: 20px;
+  border: 5px solid white;
 }
 
 .member-box:hover .profile img {
@@ -124,7 +125,6 @@
   transition: 0.2s ease;
 }
 
-
 .member-box.expanded {
   margin-top: 30px; /* Adjust as needed */
   margin-bottom: 30px; /* Adjust as needed */
@@ -134,12 +134,9 @@
   resize: horizontal;
 }
 
-
-
 .member-box .info {
   padding: 10px;
   z-index: 2;
-  
 }
 
 .member-box .info h2 {
@@ -158,4 +155,10 @@
 
 .more-info {
   max-width: 65ch;
+}
+
+@media screen and (min-width: 768px) {
+  .member-bg {
+    display: none;
+  }
 }
