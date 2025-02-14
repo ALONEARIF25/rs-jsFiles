@@ -3524,7 +3524,7 @@ const teamMembers = [
   "sub": "",
   "ID": "SGHS05B SSC2025",
   "hobbies": "Reading, Writing, Editing Photo or Video, Travelling",
-  "Goals": "",
+  "Goals": "Pilot",
   "ambition": "Pilot",
   "schlplan": "Arrange a cultural programme ",
   "phone": "01752287530",
