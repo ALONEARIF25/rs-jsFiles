@@ -130,8 +130,9 @@
   margin-bottom: 30px; /* Adjust as needed */
   flex-wrap: wrap;
   transition: margin 0.2s ease, transform 0.2s ease;
-  width: unset;
+  width: -webkit-fill-available;
   resize: horizontal;
+  margin: 10px 0px;
 }
 
 .member-box .info {
