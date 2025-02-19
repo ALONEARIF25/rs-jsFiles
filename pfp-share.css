@@ -43,7 +43,7 @@
 .member-box {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin: 13px;
   background-color: #fff;
   border-radius: 10px;
@@ -159,7 +159,12 @@
 }
 
 @media screen and (min-width: 768px) {
-  .member-bg {
-    display: none;
+  .member-box .profile {
+    padding-bottom: 10px;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 4px;
+    z-index: 2;
+    position: relative;
   }
 }
