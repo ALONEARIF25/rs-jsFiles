@@ -3912,7 +3912,7 @@ const teamMembers = [
   "dsalary": "more than $5,000",
   "schl": "Govt. Laboratory High School Rajshahi",
   "bg": "",
-  "border_color": "",
+  "border_color": "#fff",
   "border_shadow": "",
   "vanity": "",
   "donor": false,
