@@ -693,7 +693,7 @@ const teamMembers = [
       "border_color": "#fff",
       "border_shadow": "",
       "vanity": "",
-      "donor": false,
+      "donor": true,
       "verified": false,
       "pro": false,
       "racist": false,
