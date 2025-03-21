@@ -2677,7 +2677,7 @@ const teamMembers = [
   "achi": "International IQ Olympiad Champion 2024, Bangladesh National IQ Olympiad Champion (2023,24), BDMO Nationals 1st Runners Up(2023), BDMO Regionals Champion(2019,20,21,23,24), BDPHO Divisional Champion(2020), Divisional Champion in Bangabandhu Creative Talent Hunt 2022, 1st Runners Up at NDC National Nature Summit 2023 (Wall Magazine Team), Best Independent Adjudicator of DCN Nationals 2024, Outstanding Delegate at NBMUN24, Team Leader and Champion at Scholaastic International Math Competition 2021, District Champion in Bangla Essay in National Education Week 2023, District Champion in Science Quiz in BCSIR National Science Carnival and Many More. (Total 317)",
   "extra": "Dont Fall for Nazmul Girls",
   "favteacher": "Mahmuda Binte Hasib, Robiul Chowdhury Rony, Hridoy Kumar Bhattarcharya, Sukanto Paul, Towhida Miss, Farjana Hafiz",
-  "bsfs": "Sabit Bin Shafi, Nafisa Tabassum, Anika Tasnim Shoshee, Homaira Tabassum Sondhi, Ridwan Amin, Zawad Al Samin, Arijit Paul, Tasfiya Roya, Farhan Nihal Kabir, Rodoshi Ahmed, Sunjida Nahar",
+  "bsfs": "Susmita Rani Haldar Pakhi (GF), Sabit Bin Shafi, Nafisa Tabassum, Anika Tasnim Shoshee, Homaira Tabassum Sondhi, Ridwan Amin, Zawad Al Samin, Arijit Paul, Tasfiya Roya, Farhan Nihal Kabir, Rodoshi Ahmed, Sunjida Nahar",
   "ttbsfs": "",
   "dob": "2008-02-16",
   "joined": "17th Jan, 2025 5:17 PM",
