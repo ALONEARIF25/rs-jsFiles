@@ -4,7 +4,9 @@ const blogposts = [
     description: "Domain update, UI update, new pages and more!",
     content:
       "After the Secondary School Certificate (SSC) exam of 2025, The founder and developer has implimented many new features along with new domain REUN.ORG. We added /slideshow, /search/[username] new UI, /join, /about etc. Member count is 104 till today; we are working hard to gather more members, we want to print magazine, but we need more users; since magazines are not free to pirnt; we will need to seek for sponsorships and donations. If you are interested you can contribute by donating small amounts! Till next time!",
+         date: "19 May 2025",
     category: ["Announcements"],
+        
     importance: 1,
     image:
       "https://img.freepik.com/free-vector/set-torii-gates-water_52683-44986.jpg",
