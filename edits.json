@@ -1,26 +1,33 @@
 [
   {
-  "email": "msg.alone.arif@gmail.com",
-  "updated": "Doctor, Industrialist 6",
-  "timestamp": "2025-05-25T19:01:53.912Z",
-  "status": false,
-  "reason": "",
-  "field": "Goals"
-},
+    "email": "arigamingxtreme@gmail.com",
+    "updated": "Chess, Editing Photo or Video, Travelling, Music, Video Games",
+    "timestamp": "2025-05-26T13:33:16.849Z",
+    "status": true,
+    "reason": "",
+    "field": "hobbies"
+  },
   {
-  "email": "msg.alone.arif@gmail.com",
-  "updated": "Amanoth Zakaria, Araf 45",
-  "timestamp": "2025-05-25T18:51:11.461Z",
-  "status": false,
-  "reason": "not valid",
-  "field": "ttbsfs"
-},
+    "email": "msg.alone.arif@gmail.com",
+    "updated": "Doctor, Industrialist 6",
+    "timestamp": "2025-05-25T19:01:53.912Z",
+    "status": false,
+    "reason": "",
+    "field": "Goals"
+  },
+  {
+    "email": "msg.alone.arif@gmail.com",
+    "updated": "Amanoth Zakaria, Araf 45",
+    "timestamp": "2025-05-25T18:51:11.461Z",
+    "status": false,
+    "reason": "not valid",
+    "field": "ttbsfs"
+  },
 
-{
-  "email": "msg.alone.arif@gmail.com",
-  "updated": "Born to Build 33333333333333333",
-  "timestamp": "2025-05-25T18:12:00.767Z",
-  "status": true
-}
-  
+  {
+    "email": "msg.alone.arif@gmail.com",
+    "updated": "Born to Build 33333333333333333",
+    "timestamp": "2025-05-25T18:12:00.767Z",
+    "status": true
+  }
 ]
