@@ -4831,7 +4831,7 @@ const teamMembers = [
   "gamer": false,
   "willDonate": "maybe",
   "rating": "neutral",
-  "image": ""
+  "image": "images/pfp/kunu1.jpg"
 },
 {
   "email": "safiyasabrin2207@gmail.com",
