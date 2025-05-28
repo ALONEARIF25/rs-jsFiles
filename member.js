@@ -4810,7 +4810,7 @@ const teamMembers = [
   "achi": "In 2023 i'm achieved the best dancer award in all over district. This is my big achievement in my life",
   "extra": "",
   "favteacher": "Kobita Mam, Babul Sir ",
-  "bsfs": "Puspita Bardhan",
+ "bsfs": "Trisa, raya",
   "ttbsfs": "No One ",
   "dob": "2007-08-20",
   "joined": "28th May, 2025 9:30 PM",
