@@ -91,7 +91,7 @@ const teamMembers = [
     buff: false,
     gamer: false,
     artist: true,
-    sheild: true,
+    sheild: false,
     joined: "7th April, 2024 10:34 AM",
   },
 
