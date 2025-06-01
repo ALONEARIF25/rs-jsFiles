@@ -5131,7 +5131,7 @@ const teamMembers = [
   "Goals": "Nhi Bolungieee...",
   "ambition": "Secret ~",
   "schlplan": "I'll help 👍🏻",
-  "phone": "01789464747",
+  "phone": "XXXXXXXXXXX",
   "rajplan": "Opening a cafe ☕",
   "motto": "Don't get stuck 🍃",
   "socials": "https://www.facebook.com/a.mee.168852",
