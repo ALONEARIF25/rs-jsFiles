@@ -262,7 +262,7 @@ const teamMembers = [
     buff: false,
     artist: false,
     gamer: true,
-    sheild: true,
+    sheild: false,
     willDonate: "yes",
     rating: "satisfied",
     image: "images/pfp/Homaira_Tabassum_Sondhi_RGGHSH49C_SSC2025.jpg",
