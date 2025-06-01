@@ -5018,7 +5018,7 @@ const teamMembers = [
     phone: "+8801306125226",
     rajplan: "leave",
     motto: "be like a cat",
-    socials: "https://www.facebook.com/go.to.hell.bishh",
+    socials: "https://www.facebook.com/go.to.hell.bishhh",
     memories: "Nei",
     funfacts: "Life e fun nei",
     achi: "nei",
