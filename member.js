@@ -5510,7 +5510,7 @@ const teamMembers = [
   "Goals": "Pilot",
   "ambition": "Maybe buying a McLaren",
   "schlplan": "Sponsoring a concert",
-  "phone": "01786833352",
+  "phone": "34019166685(+3)",
   "rajplan": "Nothing",
   "motto": "Be yourself so that everyone can follow you ",
   "socials": "https://www.instagram.com/maliha_rayedah_nidhi?igsh=MXIzNGx0dzdzeTBieA==. https://www.facebook.com/maliha.rayedah.nidhi?",
@@ -5581,7 +5581,7 @@ const teamMembers = [
   "gamer": false,
   "willDonate": "yes",
   "rating": "satisfied",
-  "image": ""
+  "image": "images/pfp/jan2-c.jpg"
 },
 {
   "email": "sazim2050@gmail.com",
@@ -5715,7 +5715,7 @@ const teamMembers = [
   "Goals": "Pilot",
   "ambition": "Pilot",
   "schlplan": "Set date,Plan activities ",
-  "phone": "+8801757033162",
+  "phone": "+2245191477506(+4)",
   "rajplan": "\n",
   "motto": "Never give up",
   "socials": "https://www.facebook.com/share/1Fna1RR5aU/?mibextid=wwXIfr",
