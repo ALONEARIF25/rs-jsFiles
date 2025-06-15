@@ -285,7 +285,7 @@
     "buff": false,
     "artist": false,
     "gamer": true,
-    "sheild": false,
+    "sheild": true,
     "willDonate": "yes",
     "rating": "satisfied",
     "image": "images/pfp/Homaira_Tabassum_Sondhi_RGGHSH49C_SSC2025.jpg"
