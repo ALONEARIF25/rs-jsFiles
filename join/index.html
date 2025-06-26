@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+    <meta property="og:image" content="../images/metaimage.png">
+    <link rel="icon" href="fav2.svg" type="image/svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="cropper.min.css">
+    <script src="cropper.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="js.cookie.min.js"></script>
+    <script>
+        function saveDraft() {
+            const form = document.querySelector('form[name="myForm"]');
+            const expiryDate = new Date();
+            expiryDate.setFullYear(expiryDate.getFullYear() + 1); // Set expiry to 1 year from now
+
+            form.querySelectorAll('input, textarea, select').forEach(element => {
+                // Skip file inputs
+                if (element.type === 'file') return;
+
+                if (element.type === 'checkbox' || element.type === 'radio') {
+                    Cookies.remove(element.name + '_' + element.value);
+                    Cookies.set(element.name + '_' + element.value, element.checked, {
+                        expires: expiryDate,
+                        path: '/'
+                    });
+                } else {
+                    Cookies.remove(element.name);
+                    Cookies.set(element.name, element.value, {
+                        expires: expiryDate,
+                        path: '/'
+                    });
+                }
+            });
+        }
+
+        function loadDraft() {
+            const form = document.querySelector('form[name="myForm"]');
+            form.querySelectorAll('input, textarea, select').forEach(element => {
+                if (element.type === 'file') return; // Skip file inputs
+
+                if (element.type === 'checkbox' || element.type === 'radio') {
+                    const checked = Cookies.get(element.name + '_' + element.value) === 'true';
+                    element.checked = checked;
+                } else {
+                    const value = Cookies.get(element.name);
+                    if (value) {
+                        element.value = value;
+                        if (element.id === 'theme') {
+                            element.dispatchEvent(new Event('change'));
+                        }
+                    }
+                }
+            });
+        }
+
+        function clearDraft() {
+            const form = document.querySelector('form[name="myForm"]');
+            form.querySelectorAll('input, textarea, select').forEach(element => {
+                if (element.type === 'file') return; // Skip file inputs
+
+                if (element.type === 'checkbox' || element.type === 'radio') {
+                    Cookies.remove(element.name + '_' + element.value);
+                } else {
+                    Cookies.remove(element.name);
+                }
+            });
+            form.reset();
+        }
+
+        window.addEventListener('load', loadDraft);
+        window.addEventListener('beforeunload', saveDraft);
+    </script>
+</head>
+
+<body>
+    <div id="progress-bar">
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+    </script>
+    <div id="myForm" class="container">
+        <div style="position: relative;">
+            <div class="form-title">Join ReunionSurveys</div>
+            <div style="position: absolute; top: 0; right: 0; z-index: -1;">
+                <img class="bounce-rotate" style="height: 30px; width: 30px;" src="fav2.svg">
+                <style>
+                    @keyframes bounceRotate {
+                        0% {
+                            transform: scale(1) rotate(0deg);
+                        }
+
+                        50% {
+                            transform: scale(0.8) rotate(90deg);
+                        }
+
+                        100% {
+                            transform: scale(1) rotate(270deg);
+                        }
+                    }
+
+                    .bounce-rotate {
+                        transform-origin: center;
+                    }
+                </style>
+                <script>
+                    function animateOnScroll(entries, observer) {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.style.animation = 'bounceRotate 1.2s ease-in-out';
+                                entry.target.addEventListener('animationend', () => {
+                                    entry.target.style.animation = '';
+                                }, { once: true });
+                            }
+                        });
+                    }
+
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const observer = new IntersectionObserver(animateOnScroll, {
+                            threshold: 0.1
+                        });
+                        const target = document.querySelector('.bounce-rotate');
+                        observer.observe(target);
+                    });
+                </script>
+            </div>
+
+            <div style="font-size: 15px; color: var(--bright);" class="subtext">We're a non-profit organization
+                passionate about preserving your
+                memories. It's like an internet archive of highschool memories, we believe in keeping your data <a
+                    style="font-size: 18px; font-weight: 600; text-decoration: none; color: var(--brightest);">safe</a>
+                for
+                that nostalgic feel.
+                Managed by
+                Loco®, owned by alonearif Inc. Join us in safeguarding your cherished memories.
+                Your informations are public, keep it clean. <br>
+                <a href="../contact/" style="margin-right: 5px; font-weight: 500;">Contact</a>
+                <a href="../indexDark.html" style="margin-right: 5px; font-weight: 500;">Home</a>
+                <a href="#" onclick="clearDraft()" style="margin-right: 5px; font-weight: 500;">Clear Drafts</a>
+                <br><br>
+            </div>
+        </div>
+
+
+        <form id="myForm" name="myForm" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="theme">Select Theme</label>
+                <select id="theme" name="theme" style="background-color: var(--dark); width: 94%;">
+                    <option value="default">Dark</option>
+                    <option value="theme2">Light</option>
+                    <option value="theme1">Midnight</option>
+                    <option value="theme3">Ice</option>
+                    <option value="theme4">LoFi</option>
+                </select>
+            </div>
+
+            <script>
+                document.getElementById('theme').addEventListener('change', function () {
+                    const theme = this.value;
+                    const root = document.documentElement;
+
+                    if (theme === 'default') {
+                        root.style.setProperty('--darkest', '#2a2724');
+                        root.style.setProperty('--dark', '#4b4640');
+                        root.style.setProperty('--bright', '#bdafa2');
+                        root.style.setProperty('--brightest', '#fae8d7');
+                    } else if (theme === 'theme1') {
+                        root.style.setProperty('--darkest', '#1a1a1a');
+                        root.style.setProperty('--dark', '#333333');
+                        root.style.setProperty('--bright', '#cccccc');
+                        root.style.setProperty('--brightest', '#ffffff');
+                    } else if (theme === 'theme2') {
+                        root.style.setProperty('--darkest', '#fae8d7');
+                        root.style.setProperty('--dark', '#bdafa2');
+                        root.style.setProperty('--bright', '#4b4640');
+                        root.style.setProperty('--brightest', '#2a2724');
+                    } else if (theme === 'theme3') {
+                        root.style.setProperty('--darkest', '#1E2022');
+                        root.style.setProperty('--dark', '#52616B');
+                        root.style.setProperty('--bright', '#C9D6DF');
+                        root.style.setProperty('--brightest', '#F0F5F9');
+                    } else if (theme === 'theme4') {
+                        root.style.setProperty('--darkest', '#FEF5ED');
+                        root.style.setProperty('--dark', '#D3E4CD');
+                        root.style.setProperty('--bright', '#ADC2A9');
+                        root.style.setProperty('--brightest', '#99A799');
+                    }
+                });
+            </script>
+            <div class="form-group">
+                <label for="email">E-mail*</label>
+                <input type="email" placeholder="eg. msg.alone.arif@gmail.com" id="email" name="email" required>
+
+            </div>
+
+            <div class="form-group">
+                <label for="name">Name*</label>
+                <input style="height: 20px;" placeholder="eg. Atiqur R. Arif" id="name" name="name" required></input>
+                <div class="form-description">Enter your full name</div>
+            </div>
+
+            <div class="form-group">
+                <label for="schoolname">School Name*</label>
+                <select id="schoolname" name="schoolname" style="background-color: var(--dark); width: 94%;" required>
+                    <option value="" disabled selected>Select School</option>
+                    <!-- Options will be populated dynamically -->
+                </select>
+                <input type="text" id="other-schoolname" name="other_schoolname" placeholder="Enter full school name"
+                    style="display:none;"
+                    oninput="this.value = this.value.replace(/\b\w+/g, function(word) { return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(); });">
+            </div>
+
+            <div class="form-group">
+                <label for="roll">Roll*</label>
+                <input placeholder="eg. 07" type="number" id="roll" name="roll" required>
+            </div>
+
+            <div class="form-group">
+                <label for="section">Section*</label>
+                <input placeholder="eg. B" type="text" id="section" name="section" maxlength="12" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sscyear">SSC Year*</label>
+                <input placeholder="eg. 2025" type="number" id="sscyear" name="sscyear" maxlength="4" required>
+            </div>
+
+            <script>
+                const schools = [
+                    { "fullschl": "Govt. Laboratory High School Rajshahi", "acronym": "RGLHS" },
+                    { "fullschl": "Govt. Promothnath Girls' High School", "acronym": "PN" },
+                    { "fullschl": "Rajshahi Govt. Girl's High School, Helenabad", "acronym": "RGGHSH" },
+                    { "fullschl": "Rajshahi Collegiate School", "acronym": "RCS" },
+                    { "fullschl": "Haji Muhammad Mohsin Government High School", "acronym": "HMMGHSRAJ" },
+                    { "fullschl": "Shiroil Government High School, Rajshahi", "acronym": "SGHS" },
+                    { "fullschl": "Rajshahi Cantonment Public School & College", "acronym": "RAJCPSC" },
+                    { "fullschl": "Rajshahi Cantonment Board School & College", "acronym": "RCBSC" },
+                    { "fullschl": "Shahid Nazmul Huq Girls' High School Rajshahi", "acronym": "SNHGHS" },
+                    { "fullschl": "Sristy Central School & College, Rajshahi", "acronym": "SRISTYRAJ" },
+                    { "fullschl": "Rajshahi University School And College", "acronym": "RUS" },
+                    { "fullschl": "Rajshahi Shikkha Board Govt. Model School & College", "acronym": "REBMSC" },
+                    { "fullschl": "Masjid Mission Academy", "acronym": "MMARAJ" },
+                    { "fullschl": "Shimul Memorial North South School and College, Rajshahi", "acronym": "SMNSSC" },
+                    { "fullschl": "Agrani School and College", "acronym": "AGRANIRUET" },
+                    { "fullschl": "Rajshahi Government Model School & College", "acronym": "RMSCRAJ" },
+
+                ];
+
+                const schoolSelect = document.getElementById('schoolname');
+                schools.forEach(school => {
+                    const option = document.createElement('option');
+                    option.value = school.acronym;
+                    option.textContent = school.fullschl;
+                    schoolSelect.appendChild(option);
+                });
+
+                const otherOption = document.createElement('option');
+                otherOption.value = "other";
+                otherOption.textContent = "Other";
+                schoolSelect.appendChild(otherOption);
+
+                const otherSchoolInput = document.getElementById('other-schoolname');
+
+                schoolSelect.addEventListener('change', function () {
+                    if (this.value === "other") {
+                        otherSchoolInput.style.display = 'block';
+                        otherSchoolInput.setAttribute('required', 'required');
+                    } else {
+                        otherSchoolInput.style.display = 'none';
+                        otherSchoolInput.removeAttribute('required');
+                        otherSchoolInput.value = '';
+                    }
+                });
+
+                document.getElementById('section').addEventListener('input', function () {
+                    this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+                });
+
+                document.getElementById('sscyear').addEventListener('input', function () {
+                    this.value = this.value.replace(/[^0-9]/g, '').slice(0, 4);
+                });
+
+                function convertToAcronym(fullName) {
+                    return fullName.split(' ').map(word => word.charAt(0).toUpperCase()).join('');
+                }
+
+                window.addEventListener('load', function () {
+                    const savedSchool = Cookies.get('schoolname');
+                    if (savedSchool === "other") {
+                        schoolSelect.value = "other";
+                        otherSchoolInput.style.display = 'block';
+                        otherSchoolInput.setAttribute('required', 'required');
+                        otherSchoolInput.value = Cookies.get('other_schoolname') || '';
+                    }
+                });
+            </script>
+
+            <div class="form-group">
+                <label for="socials">Your Social Media Links*</label>
+                <textarea style="height: 60px;"
+                    placeholder="eg. https://fb.com/alonearif25 https://youtube.com/alonearif" id="socials"
+                    name="socials" required></textarea>
+                <div class="form-description">Can use multiple links.</div>
+                <div id="error-message" style="color: #ff5757;"></div>
+            </div>
+            <script>
+                const textarea = document.getElementById('socials');
+                const errorMessage = document.getElementById('error-message');
+
+                textarea.addEventListener('input', validateSocialsField);
+                textarea.addEventListener('blur', function () {
+                    if (errorMessage.textContent !== '') {
+                        alert('The field will be cleared due to invalid links. Please retry.');
+                        textarea.value = ''; // Clear the textarea if invalid
+                    }
+                });
+
+                textarea.addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter') {
+                        event.preventDefault(); // Prevent Enter key from adding new line
+                    }
+                });
+
+                function validateSocialsField() {
+                    const input = textarea.value.trim().replace(/\s+/g, ' '); // Replace multiple spaces with a single space
+
+                    // Split input by one or more spaces
+                    const links = input.split(' ');
+
+                    // Regular expression to match valid URLs with http:// or https://
+                    const urlPattern = /^(http:\/\/|https:\/\/)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}\/[^\s]*$/;
+
+                    let allValid = true;
+
+                    // Check each link
+                    links.forEach(link => {
+                        if (link && !urlPattern.test(link)) {
+                            allValid = false;
+                        }
+                    });
+
+                    // Check for duplicates
+                    const uniqueLinks = new Set(links.filter(link => link)); // Filter out empty strings
+                    const hasDuplicates = uniqueLinks.size !== links.filter(link => link).length;
+
+                    if (allValid && !hasDuplicates) {
+                        // If all links are valid and there are no duplicates
+                        errorMessage.textContent = '';
+                    } else {
+                        // Show an error message if any link is invalid or if there are duplicate links
+                        errorMessage.textContent = 'Please enter valid URLs separated by spaces and avoid duplicates.';
+                    }
+                }
+            </script>
+
+
+            <script>
+                document.getElementById('name').addEventListener('input', function () {
+                    // Remove numbers and special characters, allowing only letters and spaces
+                    this.value = this.value.replace(/[^a-zA-Z ]/g, '');
+
+                    // Capitalize the first letter of each word, and make the rest lowercase
+                    this.value = this.value.replace(/\b\w+/g, function (word) {
+                        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    });
+                });
+
+
+
+
+            </script>
+
+            <div class="form-group">
+                <label for="id">Ambitions*</label>
+                <textarea style="height: 50px;" placeholder="eg. Buying a Porsche." id="ambitions" name="ambitions"
+                    required></textarea>
+                <div class="form-description">Your dream of doing something great. eg. Buying a Porsche.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="id">Reunion Plan*</label>
+                <textarea style="height: 40px;" placeholder="eg. Sponsoring a cricket match." id="rplan" name="rplan"
+                    required></textarea>
+                <div class="form-description">Things you want to do when your school organizes a Reunion event.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="id">Things to do in your Hometown*</label>
+                <textarea style="height: 50px;" placeholder="eg. Opening a clothing store in Rajshahi." id="rajplan"
+                    name="rajplan" required></textarea>
+
+            </div>
+
+            <div class="form-group">
+                <label for="id">Motto/Quote*</label>
+                <textarea style="height: 30px;" placeholder="eg. Never give up." id="motto" name="motto"
+                    required></textarea>
+                <div class="form-description">Your preferred motto or quote that you follow in your life.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone*</label>
+                <input style="height: 20px;" maxlength="15" placeholder="e.g., +8801234567890 or 01234567890" id="phone"
+                    name="phone" required pattern="^(\+88)?01[3-9]\d{8}$">
+                <div class="form-description">Please enter a valid Bangladeshi phone number (e.g. +8801234567890 or
+                    01234567890).</div>
+                <div id="phone-status" style="display: none; color: #ff5757;">Invalid phone number entered.
+                </div>
+            </div>
+
+
+            <script>
+                document.getElementById('phone').addEventListener('input', function (e) {
+                    const phone = e.target.value;
+                    const phoneStatus = document.getElementById('phone-status');
+                    const bangladeshPhonePattern = /^(\+88)?01[3-9]\d{8}$/;
+
+                    // Remove any characters that are not digits or the plus sign
+                    e.target.value = phone.replace(/[^0-9+]/g, '');
+
+                    if (phone !== '' && !bangladeshPhonePattern.test(phone)) {
+                        phoneStatus.style.display = 'block'; // Show the status message if invalid
+                    } else {
+                        phoneStatus.style.display = 'none'; // Hide the status message if valid or empty
+                    }
+                });
+
+                document.getElementById('phone').addEventListener('blur', function (e) {
+                    const phone = e.target.value;
+                    const phoneStatus = document.getElementById('phone-status');
+                    const bangladeshPhonePattern = /^(\+88)?01[3-9]\d{8}$/;
+
+                    if (phone !== '' && !bangladeshPhonePattern.test(phone)) {
+                        alert('Invalid phone number entered. Field will be cleared, try again.');
+                        e.target.value = ''; // Clear the input field
+                        phoneStatus.style.display = 'block'; // Show the status message
+                    } else {
+                        phoneStatus.style.display = 'none'; // Hide the status message if valid or empty
+                    }
+                });
+
+
+            </script>
+
+
+            <div class="form-group">
+                <label for="id">Best Friend Names*</label>
+                <textarea style="height: 30px;" placeholder="Aa" id="bsf" name="bsf" required></textarea>
+                <div class="form-description">Use full names of your all current best friends.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="id">Former Best Friend Names</label>
+                <textarea style="height: 20px;" placeholder="Aa" id="fbsf" name="fbsf"></textarea>
+                <div class="form-description">A tribute to those who left us or we left them or situation made us left
+                    each other.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="id">Favorite High School Teachers</label>
+                <textarea style="height: 50px;" placeholder="Aa" id="favteacher" name="favteacher"></textarea>
+                <div class="form-description">Use full names of your all favorite high school teachers, it is not
+                    limited to your school teachers only.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="id">Achievements*</label>
+                <textarea style="height: 40px;" placeholder="Aa" id="achi" name="achi" required></textarea>
+
+            </div>
+
+            <div class="form-group">
+                <label for="id">Favorite High School Memories</label>
+                <textarea style="height: 50px;" placeholder="Aa" id="memories" name="memories"></textarea>
+
+            </div>
+
+            <div class="form-group">
+                <label for="id">Fun Facts</label>
+                <textarea style="height: 40px;" placeholder="Aa" id="funfact" name="funfact"></textarea>
+                <div class="form-description">Tell others about your fun facts, people would love to know you.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="id">Extra</label>
+                <textarea style="height: 40px;" placeholder="Aa" id="extra" name="extra"></textarea>
+                <div class="form-description">Any info/stories/experiences/facts/details etc that you want others to
+                    know!</div>
+            </div>
+
+
+
+            <script>
+                document.getElementById('bsf').addEventListener('input', function () {
+                    this.value = this.value.replace(/\b\w+/g, function (word) {
+                        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    });
+                });
+
+
+
+                document.getElementById('fbsf').addEventListener('input', function () {
+                    this.value = this.value.replace(/\b\w+/g, function (word) {
+                        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    });
+                });
+
+                document.getElementById('favteacher').addEventListener('input', function () {
+                    this.value = this.value.replace(/\b\w+/g, function (word) {
+                        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                    });
+                });
+
+                document.getElementById('memories').addEventListener('input', function () {
+                    this.value = this.value.replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function (c) {
+                        return c.toUpperCase();
+                    });
+                });
+
+                document.getElementById('funfact').addEventListener('input', function () {
+                    this.value = this.value.replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function (c) {
+                        return c.toUpperCase();
+                    });
+                });
+
+                document.getElementById('extra').addEventListener('input', function () {
+                    this.value = this.value.replace(/(^\s*\w|[\.\!\?]\s*\w)/g, function (c) {
+                        return c.toUpperCase();
+                    });
+                });
+
+
+            </script>
+
+
+
+
+            <div class="form-group" data-required="true">
+                <label for="goals">Goals*</label>
+                <div class="checkbox-group">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="goals" value="Doctor">
+                        <span class="checkmark"></span>Doctor
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="goals" value="Engineer">
+                        <span class="checkmark"></span>Engineer
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="goals" value="Businessman">
+                        <span class="checkmark"></span>Businessman
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="goals" value="Lawyer">
+                        <span class="checkmark"></span>Lawyer
+                    </label>
+
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="other-goal-checkbox" class="custom-checkbox-input">
+                        <span class="checkmark"></span>Other
+                    </label>
+                    <input type="text" id="other-goal-input" name="other_goal" style="display:none;"
+                        placeholder="Please specify">
+                </div>
+            </div>
+
+            <div class="form-group" data-required="true">
+                <label for="hobbies">Hobbies*</label>
+                <div class="checkbox-group">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Reading">
+                        <span class="checkmark"></span>Reading
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Writing">
+                        <span class="checkmark"></span>Writing
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Coding">
+                        <span class="checkmark"></span>Coding
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Texting">
+                        <span class="checkmark"></span>Texting
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies"
+                            value="Editing Photo or Video">
+                        <span class="checkmark"></span>Editing Photo or Video
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Napping">
+                        <span class="checkmark"></span>Napping
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Working Out">
+                        <span class="checkmark"></span>Working out
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Travelling">
+                        <span class="checkmark"></span>Travelling
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Music">
+                        <span class="checkmark"></span>Music
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Arts">
+                        <span class="checkmark"></span>Arts
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Video Games">
+                        <span class="checkmark"></span>Video Games
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Indoor Games">
+                        <span class="checkmark"></span>Indoor Games
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="custom-checkbox-input" name="hobbies" value="Outdoor Games">
+                        <span class="checkmark"></span>Outdoor Games
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="other-hobby-checkbox" class="custom-checkbox-input">
+                        <span class="checkmark"></span>Other
+                    </label>
+                    <input type="text" id="other-hobby-input" name="other_hobby" style="display:none;"
+                        placeholder="Please specify">
+                </div>
+
+            </div>
+
+            <script>
+                function toggleRequired(checkboxId, inputId) {
+                    var checkbox = document.getElementById(checkboxId);
+                    var input = document.getElementById(inputId);
+
+                    if (checkbox.checked) {
+                        input.style.display = 'inline-block';
+                        input.setAttribute('required', 'required');
+                    } else {
+                        input.style.display = 'none';
+                        input.removeAttribute('required');
+                        input.value = ''; // Clear the input if checkbox is unchecked
+                    }
+                }
+
+                document.getElementById('other-goal-checkbox').addEventListener('change', function () {
+                    toggleRequired('other-goal-checkbox', 'other-goal-input');
+                });
+
+                document.getElementById('other-hobby-checkbox').addEventListener('change', function () {
+                    toggleRequired('other-hobby-checkbox', 'other-hobby-input');
+                });
+
+                function formatInput(event) {
+                    event.target.value = event.target.value.replace(/\b\w/g, function (char) {
+                        return char.toUpperCase();
+                    }).replace(/\B\w/g, function (char) {
+                        return char.toLowerCase();
+                    });
+                }
+
+                document.getElementById('other-goal-input').addEventListener('input', formatInput);
+                document.getElementById('other-hobby-input').addEventListener('input', formatInput);
+            </script>
+
+
+
+
+
+            <div class="form-group" data-required="true">
+                <label for="dsalary">Desired earning/month*</label>
+                <div class="radio-group">
+                    <label class="custom-radio"><input type="radio" class="custom-radio-input" name="dsalary"
+                            value="less than $500"><span class="radio-mark"></span>less than $500</label>
+                    <label class="custom-radio"><input type="radio" class="custom-radio-input" name="dsalary"
+                            value="$500-$1,000"><span class="radio-mark"></span>$500-$1,000</label>
+                    <label class="custom-radio"><input type="radio" class="custom-radio-input" name="dsalary"
+                            value="$1,000-$5,000"><span class="radio-mark"></span>$1,000-$5,000</label>
+                    <label class="custom-radio"><input type="radio" class="custom-radio-input" name="dsalary"
+                            value="more than $5,000"><span class="radio-mark"></span>
+                        more than $5,000 </label>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="badges">Choose badges</label>
+                <div class="checkbox-group">
+                    <label class="custom-checkbox"><input type="checkbox" class="custom-checkbox-input" name="badges"
+                            value="Racist"><span class="checkmark"></span>Racist</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="custom-checkbox-input" name="badges"
+                            value="Memer"><span class="checkmark"></span>Memer</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="custom-checkbox-input" name="badges"
+                            value="Topper"><span class="checkmark"></span>Topper</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="custom-checkbox-input" name="badges"
+                            value="Buff"><span class="checkmark"></span>Buff</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="custom-checkbox-input" name="badges"
+                            value="Artist"><span class="checkmark"></span>Artist</label>
+                    <label class="custom-checkbox"><input type="checkbox" class="custom-checkbox-input" name="badges"
+                            value="Gamer"><span class="checkmark"></span>Gamer</label>
+                </div>
+            </div>
+
+            <!------------------------------------------------------------------------------------>
+            <div class="form-group" data-required="false">
+                <label for="fileUpload">Upload Profile Picture*</label>
+                <label for="fileUpload"
+                    style="display: inline-block; cursor: pointer; color: var(--brightest); font-weight: 300; background-color: var(--dark); padding: 8px 8px; border-radius: 6px; font-size: 13px;">Choose
+                    File</label>
+
+
+                <input type="file" id="fileUpload" name="fileUpload" style="display: none;" accept="image/*"
+                    onchange="validateAndOpenCropModal(event)" maxlength="8388608">
+
+                <script>
+                    function validateAndOpenCropModal(event) {
+                        const file = event.target.files[0];
+                        const maxSize = 8 * 1024 * 1024; // 8MB in bytes
+
+                        if (file && file.size > maxSize) {
+                            alert('File size must be less than 8MB');
+                            event.target.value = ''; // Clear the file input
+                            return;
+                        }
+
+                        openCropModal(event);
+                    }
+                </script>
+                <span id="file-upload-filename"
+                    style="margin-left: 10px; font-size: 16px; color: var(--bright);"></span>
+                <div id="upload-des" class="form-description">Since your high school picture will be a memory so it's
+                    highly recomended
+                    to upload your profile picture.<br> *Your face must be clearly visible, random pictures won't be
+                    accepted.
+                </div>
+                <img id="imagePreview" src="" alt="Image Preview"
+                    style="display: none; height: 80px; width: 80px; object-fit: cover; border-radius: 20%; margin-top: 6px; box-shadow: var(--dark) 2px 3px;">
+            </div>
+
+            <!-- Crop Modal -->
+            <div id="cropModal" style="display: none;">
+                <div id="cropContainer">
+                    <canvas id="cropCanvas"></canvas>
+                    <button id="cropButton" type="button">OK</button>
+                    <button id="cancelButton" type="button">Cancel</button>
+                </div>
+            </div>
+            <script>
+                let cropper;
+
+                function openCropModal(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const image = new Image();
+                            image.onload = function () {
+                                const maxCanvasWidth = image.width;
+                                const maxCanvasHeight = image.height;
+
+                                const canvas = document.getElementById('cropCanvas');
+                                canvas.width = maxCanvasWidth;
+                                canvas.height = maxCanvasHeight;
+
+                                const ctx = canvas.getContext('2d');
+                                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                                document.getElementById('cropModal').style.display = 'block';
+
+                                // Destroy existing cropper if any
+                                if (cropper) {
+                                    cropper.destroy();
+                                }
+
+                                cropper = new Cropper(canvas, {
+                                    aspectRatio: 1,
+                                    viewMode: 0, // Allow full zooming and panning
+                                    background: true, // Disable the transparent background
+                                    autoCropArea: 0.8, // Default crop box covers 80% of the image
+                                    cropBoxMovable: false, // Prevent crop box movement when dragging the image
+                                    cropBoxResizable: true, // Allow resizing the crop box using handles
+                                    dragMode: 'move', // Allow dragging the image
+                                });
+                            };
+                            image.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+
+                document.getElementById('cropButton').addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent the form from submitting
+                    const croppedCanvas = cropper.getCroppedCanvas();
+                    croppedCanvas.toBlob(function (blob) {
+                        const fileInput = document.getElementById('fileUpload');
+                        const dataTransfer = new DataTransfer();
+                        dataTransfer.items.add(new File([blob], fileInput.files[0].name));
+                        fileInput.files = dataTransfer.files;
+
+                        document.getElementById('file-upload-filename').textContent = fileInput.files[0].name;
+                        document.getElementById('cropModal').style.display = 'none';
+
+                        // Destroy cropper after cropping
+                        if (cropper) {
+                            cropper.destroy();
+                        }
+                    });
+                });
+
+
+                document.getElementById('cancelButton').addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent the form from submitting if the button is inside a form
+
+                    document.getElementById('cropModal').style.display = 'none';
+
+                    // Destroy cropper without saving the cropped image
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+                    document.getElementById('fileUpload').value = '';
+                });
+                document.getElementById('cropButton').addEventListener('click', function () {
+                    const croppedCanvas = cropper.getCroppedCanvas();
+                    const preview = document.getElementById('imagePreview');
+                    const uploadDes = document.getElementById('upload-des');
+
+                    // Display the cropped image preview
+                    preview.src = croppedCanvas.toDataURL();
+                    preview.style.display = 'block';
+                    uploadDes.style.display = 'none';
+                });
+
+                // Handle cancellation
+                document.getElementById('cancelButton').addEventListener('click', function () {
+                    const preview = document.getElementById('imagePreview');
+                    const uploadDes = document.getElementById('upload-des');
+
+                    // Hide preview and show description
+                    preview.style.display = 'none';
+                    uploadDes.style.display = 'block';
+                });
+
+            </script>
+
+            <!------------------------------------------------------------------------------------>
+            <div class="form-group">
+                <label for="dob">Date of Birth*</label>
+                <input type="date" style="height: 20px;" id="dob" name="dob" required min="1990-01-01"
+                    max="2011-12-31"></input>
+            </div>
+
+            <div class="form-group" data-required="true">
+                <label for="donate">Will you donate to this organization in near future?*</label>
+                <div class="radio-group">
+                    <label class="custom-radio"><input type="radio" class="custom-radio-input" name="donate"
+                            value="yes"><span class="radio-mark"></span>Yes</label>
+                    <label class="custom-radio"><input type="radio" class="custom-radio-input" name="donate"
+                            value="maybe"><span class="radio-mark"></span>
+                        Maybe </label>
+                    <label class="custom-radio"><input type="radio" class="custom-radio-input" name="donate"
+                            value="no"><span class="radio-mark"></span>
+                        No </label>
+                </div>
+
+            </div>
+
+            <div class="form-group" data-required="true">
+                <label for="rating">Rate your experience*</label>
+                <div class="radio-group">
+                    <label class="custom-radio"><input type="radio" class="custom-radio-input" name="rating"
+                            value="satisfied"><span class="radio-mark"></span>Satisfied</label>
+                    <label class="custom-radio"><input type="radio" class="custom-radio-input" name="rating"
+                            value="neutral"><span class="radio-mark"></span>
+                        Neutral </label>
+                    <label class="custom-radio"><input type="radio" class="custom-radio-input" name="rating"
+                            value="disappointed"><span class="radio-mark"></span>
+                        Disappointed </label>
+                </div>
+
+            </div>
+
+
+
+            <div>
+                <button type="submit" class="buttonsub">
+                    <svg id="animated-svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="vertical-align: sub; margin-right: 0px;  transition: 0.3s;">
+                        <path
+                            d="M12 14.9998L9 11.9998M12 14.9998C13.3968 14.4685 14.7369 13.7985 16 12.9998M12 14.9998V19.9998C12 19.9998 15.03 19.4498 16 17.9998C17.08 16.3798 16 12.9998 16 12.9998M9 11.9998C9.53214 10.6192 10.2022 9.29582 11 8.04976C12.1652 6.18675 13.7876 4.65281 15.713 3.59385C17.6384 2.53489 19.8027 1.98613 22 1.99976C22 4.71976 21.22 9.49976 16 12.9998M9 11.9998H4C4 11.9998 4.55 8.96976 6 7.99976C7.62 6.91976 11 7.99976 11 7.99976M4.5 16.4998C3 17.7598 2.5 21.4998 2.5 21.4998C2.5 21.4998 6.24 20.9998 7.5 19.4998C8.21 18.6598 8.2 17.3698 7.41 16.5898C7.02131 16.2188 6.50929 16.0044 5.97223 15.9878C5.43516 15.9712 4.91088 16.1535 4.5 16.4998Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span class="button-text">Submit</span>
+                </button>
+                <button
+                    style="background-color: var(--dark); box-shadow: none; margin-left: 8px; font-weight: 300; font-size: 12px; float: right;"
+                    type="button" class="buttonsub"
+                    onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSe5Vqxp0pPLf7x96GpwhSh9Mmfxnd_DViP8gFyzVzdbyQ4Kdg/viewform?usp=sf_link', '_blank');">
+                    <svg class="svg-reportbutton" width="15px" height="15px" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 8V12M12 16H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span class="button-text">Report problem</span>
+                </button>
+
+                <script>
+                    function addShakeAnimation() {
+                        const svg = document.getElementById('animated-svg');
+                        svg.classList.add('shake');
+                        setTimeout(() => {
+                            svg.classList.remove('shake');
+                        }, 1000); // Remove the animation class after 0.5s
+                    }
+
+                    setInterval(addShakeAnimation, 3000); // Add the animation class every 5s
+                </script>
+
+
+            </div>
+
+        </form>
+        <div class="cfooter">© Crafted by AloneArif 2021-2024</div>
+        <div class="json-output" onclick="copyToClipboard(this)"></div>
+    </div>
+
+    <!------------------------------------------------------------------------------------------------------------------------------------------------>
+
+    <script>
+
+
+        function checkRequiredFields(form) {
+            let allValid = true;
+            let firstInvalidGroup = null;
+            const requiredGroups = form.querySelectorAll('.form-group[data-required="true"]');
+
+            requiredGroups.forEach(group => {
+                const checkboxes = group.querySelectorAll('input[type="checkbox"]:checked');
+                const radios = group.querySelectorAll('input[type="radio"]:checked');
+                let alert = group.querySelector('.alert-message');
+
+                if (!alert) {
+                    alert = document.createElement('div');
+                    alert.className = 'alert-message';
+                    alert.style.color = 'red';
+                    group.appendChild(alert);
+                }
+
+                if (checkboxes.length === 0 && radios.length === 0) {
+                    alert.style.display = 'block';
+                    alert.innerText = '*Please fill this out...';
+                    group.classList.add('alert'); // Add the alert class to trigger the background color animation
+                    allValid = false;
+                    if (!firstInvalidGroup) {
+                        firstInvalidGroup = group;
+                    }
+                } else {
+                    alert.style.display = 'none';
+                    group.classList.remove('alert'); // Remove the alert class to stop the background color animation
+                }
+            });
+
+            if (firstInvalidGroup) {
+                const rect = firstInvalidGroup.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const targetPosition = rect.top + scrollTop - 10;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+
+            return allValid;
+        }
+
+        // Function to enforce the max limit on checkboxes
+        function enforceCheckboxLimit() {
+            const maxLimit = 3;
+            const checkboxes = document.querySelectorAll('input[name="badges"]:checked');
+
+            if (checkboxes.length > maxLimit) {
+                // Uncheck the last checkbox if the limit is exceeded
+                checkboxes[checkboxes.length - 1].checked = false;
+                alert(`You can only select up to ${maxLimit} badges.`);
+            }
+        }
+
+        // Add event listeners to enforce the limit
+        document.querySelectorAll('input[name="badges"]').forEach(checkbox => {
+            checkbox.addEventListener('change', enforceCheckboxLimit);
+        });
+    </script>
+
+    <!------------------------------------------------------------------------------------------------------------------------------------------------>
+
+    <script>
+        function updateFileName() {
+            const input = document.getElementById('fileUpload');
+            const fileName = input.files.length > 0 ? input.files[0].name : 'No file chosen';
+            document.getElementById('file-upload-filename').textContent = fileName;
+        }
+
+        function resizeAndConvertImage(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        const MAX_WIDTH = 600;
+                        const MAX_HEIGHT = 600;
+                        let width = img.width;
+                        let height = img.height;
+
+                        // Calculate the new dimensions
+                        if (width > height) {
+                            if (width > MAX_WIDTH) {
+                                height *= MAX_WIDTH / width;
+                                width = MAX_WIDTH;
+                            }
+                        } else {
+                            if (height > MAX_HEIGHT) {
+                                width *= MAX_HEIGHT / height;
+                                height = MAX_HEIGHT;
+                            }
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        // Convert to JPEG with medium quality
+                        canvas.toBlob(blob => {
+                            resolve(blob);
+                        }, 'image/jpeg', 0.8); // quality
+                    };
+                    img.src = reader.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function startLoadingAnimation(button) {
+            const loadingText = button.querySelector('.button-text');
+            let dots = 0;
+
+            button.dataset.originalText = loadingText.innerHTML;
+            loadingText.innerHTML = 'Please wait';
+            loadingText.style.opacity = "0.6";
+            button.disabled = true;
+
+            const interval = setInterval(() => {
+                dots = (dots + 1) % 4;
+                loadingText.innerHTML = 'Processing' + '.'.repeat(dots);
+
+            }, 500);
+
+            return interval;
+        }
+
+        function stopLoadingAnimation(button, interval) {
+            clearInterval(interval);
+            const loadingText = button.querySelector('.button-text');
+            loadingText.innerHTML = button.dataset.originalText;
+            loadingText.style.opacity = "1";
+        }
+
+        function bypassFileUploadRequirement() {
+            const popup = document.querySelector('.custom-popup');
+            if (popup) {
+                popup.remove();
+            }
+            handleSubmit.bypassFileUpload = true;
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const allValid = checkRequiredFields(form);
+
+            if (!allValid) {
+                return;
+            }
+
+            const fileInput = form.querySelector('input[name="fileUpload"]');
+            const file = fileInput ? fileInput.files[0] : null;
+
+            // Check if profile picture is uploaded or bypass is enabled
+            if (!file && !handleSubmit.bypassFileUpload) {
+                const popup = document.createElement('div');
+                popup.className = 'custom-popup';
+                popup.innerHTML = `
+                    <div class="popup-content">
+                        <p style="font-size: 13px; text-align: left;">Please attach a profile picture before submitting. Once the form is submitted, you cannot edit it.</p>
+                        <button style="font-family: Poppins;" onclick="this.parentElement.parentElement.remove(); document.getElementById('fileUpload').click();">Okay</button>
+                         <button style="font-family: Poppins; background-color: var(--darkest); color: var(--bright)" onclick="bypassFileUploadRequirement(); document.querySelector('.buttonsub').click();">Continue anyway</button>
+                    </div>
+                `;
+                document.body.appendChild(popup);
+
+                // Add styles
+                const style = document.createElement('style');
+                style.textContent = `
+                    .custom-popup {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0,0,0,0.7);
+                        backdrop-filter: blur(2px);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 1000;
+                    }
+                    .popup-content {
+                        background: var(--darkest);
+                        padding: 20px;
+                        border-radius: 12px;
+                        text-align: center;
+                        color: var(--brightest);
+                        margin: 15px;
+                    }
+                    .popup-content button {
+                        background: var(--dark);
+                        color: var(--brightest);
+                        border: none;
+                        padding: 6px 16px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        margin-top: 10px;
+                    }
+                    .popup-content button:hover {
+                        opacity: 0.9;
+                    }
+                `;
+                document.head.appendChild(style);
+                return;
+            }
+
+            // Show loading animation
+            const submitButton = form.querySelector('.buttonsub');
+            const loadingInterval = startLoadingAnimation(submitButton);
+
+            const hobbiesArray = Array.from(form.querySelectorAll('input[name="hobbies"]:checked')).map(checkbox => checkbox.value);
+            const dsalarySelected = form.querySelector('input[name="dsalary"]:checked');
+            const donateSelected = form.querySelector('input[name="donate"]:checked');
+            const ratingSelected = form.querySelector('input[name="rating"]:checked');
+
+
+            const goalsCheckboxes = form.querySelectorAll('input[name="goals"]:checked');
+            const goals = Array.from(goalsCheckboxes).map(cb => cb.value);
+            const otherGoalInput = form.querySelector('#other-goal-input').value;
+            if (form.querySelector('#other-goal-checkbox').checked && otherGoalInput) {
+                goals.push(otherGoalInput);
+            }
+
+            const hobbiesCheckboxes = form.querySelectorAll('input[name="hobbies"]:checked');
+            const hobbies = Array.from(hobbiesCheckboxes).map(cb => cb.value);
+            const otherHobbyInput = form.querySelector('#other-hobby-input').value;
+            if (form.querySelector('#other-hobby-checkbox').checked && otherHobbyInput) {
+                hobbies.push(otherHobbyInput);
+            }
+
+            // Usage example in your existing code
+            const dob = form.dob.value;
+
+            function formatDate(date) {
+                // Get the UTC time and add 6 hours for GMT+6
+                const utcHours = date.getUTCHours();
+                const utcMinutes = date.getUTCMinutes();
+
+                // Adjust the time for GMT+6
+                const gmt6Hours = (utcHours + 6) % 24;
+                const gmt6Date = new Date(date);
+                gmt6Date.setUTCHours(gmt6Hours);
+                gmt6Date.setUTCMinutes(utcMinutes);
+
+                // Define month names
+                const months = [
+                    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+                ];
+
+                // Extract date components
+                const day = gmt6Date.getUTCDate();
+                const month = months[gmt6Date.getUTCMonth()];
+                const year = gmt6Date.getUTCFullYear();
+
+                // Format time with AM/PM
+                const hours = gmt6Date.getUTCHours();
+                const minutes = gmt6Date.getUTCMinutes();
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                const formattedHours = hours % 12 || 12; // Convert to 12-hour format
+                const formattedMinutes = minutes < 10 ? '0' + minutes : minutes; // Pad minutes with leading zero
+
+                // Function to get ordinal suffix
+                function getOrdinalSuffix(day) {
+                    if (day > 3 && day < 21) return 'th'; // 11th, 12th, 13th, etc.
+                    switch (day % 10) {
+                        case 1: return 'st';
+                        case 2: return 'nd';
+                        case 3: return 'rd';
+                        default: return 'th';
+                    }
+                }
+
+                // Format day with ordinal suffix
+                const formattedDay = day + getOrdinalSuffix(day);
+
+                // Return formatted date string with time
+                return `${formattedDay} ${month}, ${year} ${formattedHours}:${formattedMinutes} ${ampm}`;
+            }
+
+            // Example usage
+            const joinedDate = new Date(); // Get the current date and time
+            console.log(formatDate(joinedDate)); // Outputs: "10th Aug, 2024 10:30 AM" (example in GMT+6)
+
+            const schoolname = form.schoolname.value === "other" ? convertToAcronym(form.other_schoolname.value) : form.schoolname.value;
+            const roll = form.roll.value;
+            const section = form.section.value;
+            const sscyear = form.sscyear.value;
+            const id = `${schoolname}${roll}${section} SSC${sscyear}`;
+
+            const data = {
+                email: form.email.value,
+                name: form.name.value,
+                sub: "",
+                ID: id,
+                hobbies: hobbies.join(", "),
+                Goals: goals.join(", "),
+                ambition: form.ambitions.value,
+                schlplan: form.rplan.value,
+                phone: form.phone.value,
+                rajplan: form.rajplan.value,
+                motto: form.motto.value,
+                socials: form.socials.value,
+                memories: form.memories.value,
+                funfacts: form.funfact.value,
+                achi: form.achi.value,
+                extra: form.extra.value,
+                favteacher: form.favteacher.value,
+                bsfs: form.bsf.value,
+                ttbsfs: form.fbsf.value,
+                dob: dob,
+                joined: formatDate(joinedDate),
+                dsalary: dsalarySelected ? dsalarySelected.value : "",
+                schl: form.schoolname.value === "other" ? form.other_schoolname.value : form.schoolname.options[form.schoolname.selectedIndex].text,
+                bg: "",
+                border_color: "#fff",
+                border_shadow: "",
+                vanity: "",
+                donor: false,
+                verified: false,
+                pro: false,
+                racist: form.querySelector('input[name="badges"][value="Racist"]').checked,
+                memer: form.querySelector('input[name="badges"][value="Memer"]').checked,
+                topper: form.querySelector('input[name="badges"][value="Topper"]').checked,
+                buff: form.querySelector('input[name="badges"][value="Buff"]').checked,
+                artist: form.querySelector('input[name="badges"][value="Artist"]').checked,
+                gamer: form.querySelector('input[name="badges"][value="Gamer"]').checked,
+                willDonate: donateSelected ? donateSelected.value : "",
+                rating: ratingSelected ? ratingSelected.value : "",
+                image: ""
+            };
+
+            // Save school name and other school name to cookies
+            Cookies.set('schoolname', form.schoolname.value, { expires: 365 });
+            if (form.schoolname.value === "other") {
+                Cookies.set('other_schoolname', form.other_schoolname.value, { expires: 365 });
+            } else {
+                Cookies.remove('other_schoolname');
+            }
+
+            const webhookUrl = "https://discord.com/api/webhooks/1268873628628418712/_NLyGtdm217TUh5Sm42b_Fdq0E3PvUbw0QZC9C4SokZmf49-RIvBdw01MLgihTdW9U6r";
+
+            if (file) {
+                try {
+                    const resizedImage = await resizeAndConvertImage(file);
+
+                    // Generate the file name
+                    const memberName = form.name.value; // Replace with actual member name variable
+                    const memberId = id; // Use the generated ID
+                    const fileName = `${memberName.replace(/\s+/g, '_')}_${memberId.replace(/\s+/g, '_')}.jpg`;
+
+                    // Prepare FormData for original and resized images
+                    const originalFileData = new FormData();
+                    originalFileData.append('file', file, fileName); // Use the generated file name
+
+                    const resizedFileData = new FormData();
+                    resizedFileData.append('file', resizedImage, fileName); // Use the same file name
+
+                    // Upload original image
+                    await fetch(webhookUrl, {
+                        method: 'POST',
+                        body: originalFileData
+                    }).then(response => {
+                        if (!response.ok) throw new Error('Failed to upload original image');
+                        return response.json();
+                    });
+
+                    // Upload resized image
+                    await fetch(webhookUrl, {
+                        method: 'POST',
+                        body: resizedFileData
+                    }).then(response => {
+                        if (!response.ok) throw new Error('Failed to upload resized image');
+                        return response.json();
+                    });
+
+                    // Use the file name in data.image
+                    data.image = `images/pfp/${fileName}`;
+
+                } catch (error) {
+                    console.error('Error processing image:', error);
+                    stopLoadingAnimation(submitButton, loadingInterval);
+                    const originalText = submitButton.querySelector('.button-text').innerHTML;
+                    submitButton.querySelector('.button-text').innerHTML = 'Internal Error...';
+                    setTimeout(() => {
+                        submitButton.querySelector('.button-text').innerHTML = originalText;
+                        submitButton.disabled = false;
+                    }, 2000);
+                    return; // Exit if there's an error
+                }
+            }
+
+            try {
+                const jsonData = JSON.stringify(data, null, 2);
+                if (jsonData.length > 1900) {
+                    const blob = new Blob([jsonData + ','], { type: 'text/plain' });
+                    const formData = new FormData();
+                    formData.append('file', blob, 'form_data.txt');
+
+                    await fetch(webhookUrl, {
+                        method: 'POST',
+                        body: formData
+                    }).then(response => {
+                        if (!response.ok) throw new Error('Failed to send data to webhook');
+                    });
+                } else {
+                    await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ content: `\`\`\`json\n${jsonData},\n\`\`\`` })
+                    }).then(response => {
+                        if (!response.ok) throw new Error('Failed to send data to webhook');
+                    });
+                }
+
+                // Hide loading animation and show success message
+                stopLoadingAnimation(submitButton, loadingInterval);
+
+                document.querySelector('.json-output').innerText = jsonData;
+                document.querySelector('.form-title').innerText = "Success";
+                document.querySelector('.cfooter').innerText = "";
+                document.querySelector('.subtext').innerText = "Thanks for filling out the form. See you in 20 years!";
+
+                setTimeout(() => {
+document.querySelector('.subtext').innerHTML = `Your form can take up to 7 days to be added.<br>
+Checkout the <a href="https://reun.org/" target="_blank">Homepage</a> after a few days!<br>
+Consider <a href="https://reun.org/donate" target="_blank">Donating</a> to support our cause or 
+<a href="https://reun.org/reports" target="_blank">View Reports</a> to see our progress.<br><br>
+For any issues, 
+<a href="https://reun.org/contact" target="_blank">Contact Us</a> or 
+<a href="https://forms.gle/pyzkdXTtMaD2qxKw9" target="_blank">Give Feedback</a>.`;
+
+                }, 3000); // 3sec
+
+                form.style.display = 'none';
+            } catch (error) {
+                console.error('Fetch error:', error);
+                stopLoadingAnimation(submitButton, loadingInterval);
+                const originalText = submitButton.querySelector('.button-text').innerHTML;
+                submitButton.querySelector('.button-text').innerHTML = 'Network Error...';
+                setTimeout(() => {
+                    submitButton.querySelector('.button-text').innerHTML = originalText;
+                    submitButton.disabled = false;
+                }, 2000);
+            }
+        }
+
+        function copyToClipboard(element) {
+            const text = element.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("JSON output copied to clipboard");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>
