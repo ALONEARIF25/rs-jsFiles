@@ -7,7 +7,7 @@
     "category": ["Announcements"],
 
     "importance": 1,
-    "image": "https://unsplash.com/photos/a-colorful-racing-helmet-rests-upon-a-white-cube-B8ZALHajHeQ",
+    "image": "https://reunionsurveys.pages.dev/images/blogs/blogcover3.jpg",
     "author": "alonearif",
     "authorlink": "./"
   },
@@ -18,7 +18,7 @@
     "date": "06 Feb 2025",
     "category": ["Announcements"],
     "importance": 1,
-    "image": "https://images2.alphacoders.com/855/thumb-1920-855531.png",
+    "image": "https://reunionsurveys.pages.dev/images/blogs/blogcover2.jpg",
     "author": "alonearif",
     "authorlink": "./"
   },
@@ -29,7 +29,7 @@
     "date": "02 Feb 2025",
     "category": ["Product Updates", "Announcements"],
     "importance": 2,
-    "image": "https://i.ppy.sh/9b864944c40b034ac530654c97c9848db7eed380/68747470733a2f2f696d6775722d617263686976652e7070792e73682f646973636f72642f3934373835393938393531333531393133382d3935353134393235333932363333303431392d313030302e706e67",
+    "image": "https://reunionsurveys.pages.dev/images/blogs/blogcover.jpg",
     "author": "teamreunionai",
     "authorlink": "./"
   }
