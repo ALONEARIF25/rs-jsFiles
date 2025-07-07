@@ -1,15 +1,25 @@
 [
+   {
+    "title": "Celebrating 150 Members",
+    "description": "After about 2 months we have finally hit 150!",
+    "content": "During SSC our campaign was totally turned off, as a result we didn't grow any members. After SSC25, around May 22, our campaign started again, we have some awsome volunteers who worked hard to gather these members. Here are a few Website statistics: May18-Jun8 - [288 visitors, 1243 views, 49% bounce rate]; Jun8-Jul7 - [232 visitors, 1683 views, 44% bounce rate]. This is the data from when we started using reun.org domain, the previous domain is no longer available which was survey.kormoit.com; it was a beta release on that website and it was temporary, reun.org is the production domain of our platform and will continue in the future (hopefully if we don't run out of money). In about 60 days we managed to get 50 members, we promoted our website in facebook through different accounts. Next, we are thinking of promoting this in Instagram, which will be harder but I think sharing stories will work rather than posting. Apart from this we can do real world campaign which is harder and also requires fund, but we dont have sufficient funds. We  are so low on funds that I alone have to bear the cost of domain, development, hosting and others. People are not fond of donating, specially if they are students in Bangladesh, it becomes harder. Our next target is 300 members, which is 150 more than now. If we do proper promoting, I hope it will take 150 days means 5 months. By December we can hope that we will have 300 members, we are trying to expand our volunteers and members so that not only SSC25 batch exists, we want SSC26 and SSC27. SSC28 are minors and doesn't have that much privillages to followup in our website. Thanks for reading till the end.",
+    "date": "07 Jul 2025",
+    "category": ["Updates"],
+    "importance": 1,
+    "image": "https://reunionsurveys.pages.dev/images/blogs/blogcover4.jpg",
+    "author": "alonearif",
+    "authorlink": "/arif"
+  },
   {
     "title": "May 2025 Update",
     "description": "Domain update, UI update, new pages and more!",
     "content": "After the Secondary School Certificate (SSC) exam of 2025, The founder and developer has implimented many new features along with new domain REUN.ORG. We added /slideshow, /search/[username] new UI, /join, /about etc. Member count is 104 till today; we are working hard to gather more members, we want to print magazine, but we need more users; since magazines are not free to pirnt; we will need to seek for sponsorships and donations. If you are interested you can contribute by donating small amounts! Till next time! Update: added shorter URL for search: reun.org/@username, please note this is not permanent link to your profile, permanent links do not include @, so your permanent link will be reun.org/username.",
     "date": "19 May 2025",
     "category": ["Announcements"],
-
     "importance": 1,
     "image": "https://reunionsurveys.pages.dev/images/blogs/blogcover3.jpg",
     "author": "alonearif",
-    "authorlink": "./"
+    "authorlink": "/arif"
   },
   {
     "title": "Way to 100",
@@ -20,7 +30,7 @@
     "importance": 1,
     "image": "https://reunionsurveys.pages.dev/images/blogs/blogcover2.jpg",
     "author": "alonearif",
-    "authorlink": "./"
+    "authorlink": "/arif"
   },
   {
     "title": "Reunion Surveys v6 Launch",
@@ -31,6 +41,6 @@
     "importance": 2,
     "image": "https://reunionsurveys.pages.dev/images/blogs/blogcover.jpg",
     "author": "teamreunionai",
-    "authorlink": "./"
+    "authorlink": "/"
   }
 ]
